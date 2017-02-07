@@ -5,7 +5,7 @@ const xml = require('xml');
 const employees = [{employees: [{ name: 'John' }, { name: 'Victoria' }, { name: 'Lee' }] }];
 
 app.get('/', function (req, res) {
-  res.send(xml(employees));
+  res.send(xml(employees, true));
 });
 
 app.listen(process.env.PORT || 3000, function () {

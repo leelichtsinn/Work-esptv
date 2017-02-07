@@ -1,13 +1,13 @@
 const express = require('express');
-const path = require('path');
 const app = express();
+const xml = require('xml');
 
-// Use public folder as the static directory
-app.use(express.static(path.join(__dirname, 'public')));
+const employees = [{employees: [{ name: 'John' }, { name: 'Victoria' }, { name: 'Lee' }] }];
 
-// Send any route to index.html where the app is mounted
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html'));
+app.get('/', function (req, res) {
+  res.send(xml(employees));
 });
 
-app.listen(3000, () => console.log('App running on localhost:3000'));
+app.listen(process.env.PORT || 3000, function () {
+  console.log('app listening on port 3000');
+});
